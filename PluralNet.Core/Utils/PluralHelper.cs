@@ -1,9 +1,7 @@
 ﻿/*
  * PluralNet
- * Author  Rudy Huyn (6Studio)
  * License MIT / http://bit.ly/mit-license
- * 
- * Version 1.00
+ *
  */
 
 using System.Globalization;
@@ -14,13 +12,22 @@ namespace PluralNet.Utils
 {
     public static class PluralHelper
     {
-        public static IPluralProvider GetPluralChooser(CultureInfo culture)
+        /// <summary>
+        /// Return the PluralProvider associated to the language
+        /// </summary>
+        /// <param name="culture">Culture for the language</param>
+        /// <returns></returns>
+        public static IPluralProvider GetPluralChooser(CultureInfo culture) => GetPluralChooser(culture.TwoLetterISOLanguageName);
+
+        /// <summary>
+        /// Return the PluralProvider associated to the language
+        /// </summary>
+        /// <param name="twoLetterISOLanguageName">ISO 639-1 two-letter code for the language</param>
+        /// <returns></returns>
+        public static IPluralProvider GetPluralChooser(string twoLetterISOLanguageName)
         {
-
-            switch (culture.TwoLetterISOLanguageName)
+            switch (twoLetterISOLanguageName)
             {
-
-
                 case "ak": // Akan
                 case "bh":  // Bihari
                 case "guw":  // Gun
@@ -46,112 +53,112 @@ namespace PluralNet.Utils
                 case "kab":  // Kabyle
                     return new ZeroToTwoExcludedProvider();
 
-                    /////////////////////////////////////////////////////////////////////////////////////////
-                case "af":  // Afrikaans			
-                case "sq":  // Albanian			
-                case "ast": // Asturian			
-                case "asa": // Asu			
-                case "az":  // Azerbaijani			
-                case "eu":  // Basque			
-                case "bem": // Bemba			
-                case "bez":  // Bena			
-                case "brx":  // Bodo			
-                case "bg":  // Bulgarian			
-                case "ca":  // Catalan			
-                case "chr":  // Cherokee			
-                case "cgg":  // Chiga			
+                /////////////////////////////////////////////////////////////////////////////////////////
+                case "af":  // Afrikaans
+                case "sq":  // Albanian
+                case "ast": // Asturian
+                case "asa": // Asu
+                case "az":  // Azerbaijani
+                case "eu":  // Basque
+                case "bem": // Bemba
+                case "bez":  // Bena
+                case "brx":  // Bodo
+                case "bg":  // Bulgarian
+                case "ca":  // Catalan
+                case "chr":  // Cherokee
+                case "cgg":  // Chiga
 
-                case "dv":  // Divehi			
-                case "nl":  // Dutch			
-                case "en":  // English			
-                case "eo":  // Esperanto			
-                case "et":  // Estonian			
-                case "pt":  // European Portuguese			
-                case "ee":  // Ewe			
-                case "fo":  // Faroese			
-                case "fi":  // Finnish			
-                case "fur":  // Friulian			
-                case "gl":  // Galician			
-                case "lg":  // Ganda			
-                case "ka":  // Georgian			
-                case "de":  // German			
-                case "el":  // Greek			
-                case "ha":  // Hausa			
-                case "haw":  // Hawaiian			
-                case "hu":  // Hungarian			
-                case "it":  // Italian			
-                case "kaj":  // Jju			
-                case "kkj":  // Kako			
-                case "kl":  // Kalaallisut			
-                case "ks":  // Kashmiri			
-                case "kk":  // Kazakh			
-                case "ku":  // Kurdish			
-                case "ky":  // Kyrgyz			
-                case "lb":  // Luxembourgish			
-                case "jmc":  // Machame			
-                case "ml":  // Malayalam			
-                case "mas":  // Masai			
-                case "mgo":  // Meta'			
-                case "mn":  // Mongolian			
-                case "nah":  // Nahuatl			
-                case "ne":  // Nepali			
-                case "nnh":  // Ngiemboon			
-                case "jgo":  // Ngomba			
-                case "nd":  // North Ndebele			
-                case "no":  // Norwegian			
-                case "nb":  // Norwegian Bokmål			
-                case "nn":  // Norwegian Nynorsk			
-                case "ny":  // Nyanja			
-                case "nyn":  // Nyankole			
-                case "or":  // Oriya			
-                case "om":  // Oromo			
-                case "os":  // Ossetic			
-                case "pap":  // Papiamento			
-                case "ps":  // Pashto			
-                case "rm":  // Romansh			
-                case "rof":  // Rombo			
-                case "rwk":  // Rwa			
-                case "ssy":  // Saho			
-                case "sag":  // Samburu			
-                case "seh":  // Sena			
-                case "ksb":  // Shambala			
-                case "sn":  // Shona			
-                case "xog":  // Soga			
-                case "so":  // Somali			
-                case "ckb":  // Sorani Kurdish			
-                case "nr":  // South Ndebele			
-                case "st":  // Southern Sotho			
-                case "es":  // Spanish			
-                case "sw":  // Swahili			
-                case "ss":  // Swati			
-                case "sv":  // Swedish			
-                case "gsw":  // Swiss German			
-                case "syr":  // Syriac			
-                case "ta":  // Tamil			
-                case "te":  // Telugu			
-                case "teo":  // Teso			
-                case "tig":  // Tigre			
-                case "ts":  // Tsonga			
-                case "tn":  // Tswana			
-                case "tr":  // Turkish			
-                case "tk":  // Turkmen			
-                case "kcg":  // Tyap			
-                case "ur":  // Urdu			
-                case "ug":  // Uyghur			
-                case "uz":  // Uzbek			
-                case "ve":  // Venda			
-                case "vo":  // Volapük			
-                case "vun":  // Vunjo			
-                case "wae":  // Walser			
-                case "fy":  // Western Frisian			
-                case "xh":  // Xhosa			
-                case "yi":  // Yiddish			
+                case "dv":  // Divehi
+                case "nl":  // Dutch
+                case "en":  // English
+                case "eo":  // Esperanto
+                case "et":  // Estonian
+                case "pt":  // European Portuguese
+                case "ee":  // Ewe
+                case "fo":  // Faroese
+                case "fi":  // Finnish
+                case "fur":  // Friulian
+                case "gl":  // Galician
+                case "lg":  // Ganda
+                case "ka":  // Georgian
+                case "de":  // German
+                case "el":  // Greek
+                case "ha":  // Hausa
+                case "haw":  // Hawaiian
+                case "hu":  // Hungarian
+                case "it":  // Italian
+                case "kaj":  // Jju
+                case "kkj":  // Kako
+                case "kl":  // Kalaallisut
+                case "ks":  // Kashmiri
+                case "kk":  // Kazakh
+                case "ku":  // Kurdish
+                case "ky":  // Kyrgyz
+                case "lb":  // Luxembourgish
+                case "jmc":  // Machame
+                case "ml":  // Malayalam
+                case "mas":  // Masai
+                case "mgo":  // Meta'
+                case "mn":  // Mongolian
+                case "nah":  // Nahuatl
+                case "ne":  // Nepali
+                case "nnh":  // Ngiemboon
+                case "jgo":  // Ngomba
+                case "nd":  // North Ndebele
+                case "no":  // Norwegian
+                case "nb":  // Norwegian Bokmål
+                case "nn":  // Norwegian Nynorsk
+                case "ny":  // Nyanja
+                case "nyn":  // Nyankole
+                case "or":  // Oriya
+                case "om":  // Oromo
+                case "os":  // Ossetic
+                case "pap":  // Papiamento
+                case "ps":  // Pashto
+                case "rm":  // Romansh
+                case "rof":  // Rombo
+                case "rwk":  // Rwa
+                case "ssy":  // Saho
+                case "sag":  // Samburu
+                case "seh":  // Sena
+                case "ksb":  // Shambala
+                case "sn":  // Shona
+                case "xog":  // Soga
+                case "so":  // Somali
+                case "ckb":  // Sorani Kurdish
+                case "nr":  // South Ndebele
+                case "st":  // Southern Sotho
+                case "es":  // Spanish
+                case "sw":  // Swahili
+                case "ss":  // Swati
+                case "sv":  // Swedish
+                case "gsw":  // Swiss German
+                case "syr":  // Syriac
+                case "ta":  // Tamil
+                case "te":  // Telugu
+                case "teo":  // Teso
+                case "tig":  // Tigre
+                case "ts":  // Tsonga
+                case "tn":  // Tswana
+                case "tr":  // Turkish
+                case "tk":  // Turkmen
+                case "kcg":  // Tyap
+                case "ur":  // Urdu
+                case "ug":  // Uyghur
+                case "uz":  // Uzbek
+                case "ve":  // Venda
+                case "vo":  // Volapük
+                case "vun":  // Vunjo
+                case "wae":  // Walser
+                case "fy":  // Western Frisian
+                case "xh":  // Xhosa
+                case "yi":  // Yiddish
                 case "ji":  // ji
                     return new OnlyOneProvider();
-                    ////////////////////////////////////////////////////////////////////////////////////
+                ////////////////////////////////////////////////////////////////////////////////////
                 case "si": // Sinhala
                     return new SinhalaProvider();
-                case "lv": // Latvian 
+                case "lv": // Latvian
                 case "prg": // Prussian
                     return new LatvianProvider();
                 case "ga": // Irish
@@ -169,7 +176,7 @@ namespace PluralNet.Utils
                 case "cs": // Czech
                 case "sk": // Slovak
                     return new CzechProvider();
-                case "pl": // Polish 
+                case "pl": // Polish
                     return new PolishProvider();
                 case "sl": // Slovenian
                     return new SlovenianProvider();
@@ -219,7 +226,7 @@ namespace PluralNet.Utils
                     return new MalteseProvider();
                 case "cy": // Welsh
                     return new WelshProvider();
-                case "da":  // Danish	
+                case "da":  // Danish
                     return new DanishProvider();
                 default:
                     return new OtherProvider();
