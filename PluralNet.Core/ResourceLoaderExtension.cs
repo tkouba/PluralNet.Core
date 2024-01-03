@@ -1,76 +1,64 @@
-﻿using PluralNet;
+﻿using System;
+using System.Collections.Concurrent;
 using System.Globalization;
+using System.Resources;
 using PluralNet.Interfaces;
 using PluralNet.Utils;
-using System.Resources;
-
 
 namespace PluralNet
 {
     public static class ResourceLoaderExtension
     {
-        private static IPluralProvider _pluralProvider;
-        private static object _objLock = new object();
+        private static ConcurrentDictionary<string, IPluralProvider> _pluralProviders = new ConcurrentDictionary<string, IPluralProvider>();
 
-        public static string GetPlural(this ResourceManager resource, string key, decimal number)
+        public static void SetPluralProvider(CultureInfo cultureInfo, IPluralProvider provider)
         {
+            _pluralProviders.AddOrUpdate(cultureInfo.TwoLetterISOLanguageName, provider, (key, old) => provider);
+        }
 
-            if (_pluralProvider == null)
+        public static string GetPlural(this ResourceManager resource, string key, decimal number, CultureInfo cultureToUse = null)
+            => GetPlural<ResourceManager>((reskey, culture) => resource.GetString(reskey, culture), key, number, cultureToUse);
+
+        public static string GetPlural<T>(Func<string, CultureInfo, string> getString, string key, decimal number, CultureInfo cultureToUse)
+        {
+            if (cultureToUse == null)
             {
-                lock (_objLock)
-                {
-                    if (_pluralProvider == null)
-                    {
-                        CultureInfo cultureToUse = null;
-                        var forcedCulture = resource.GetString("ResourceLanguage");
-                        if (!string.IsNullOrEmpty(forcedCulture))
-                        {
-                            try
-                            {
-                                cultureToUse = new CultureInfo(forcedCulture);
-                            }
-                            catch
-                            {
-                                cultureToUse = new CultureInfo(CultureInfo.CurrentUICulture.Name);
-                            }
-                        }
-                        else
-                        {
-                            cultureToUse = new CultureInfo(CultureInfo.CurrentUICulture.Name);
-                        }
-
-                        _pluralProvider = PluralHelper.GetPluralChooser(cultureToUse);
-                    }
-                }
+                cultureToUse = CultureInfo.CurrentUICulture;
             }
+
+            IPluralProvider pluralProvider = _pluralProviders.GetOrAdd(cultureToUse.TwoLetterISOLanguageName, (twoLetterISOLanguageName) => PluralHelper.GetPluralChooser(twoLetterISOLanguageName));
+
+            if (pluralProvider == null)
+                return string.Empty;
+
             string selectedSentence = null;
-            var pluralType = _pluralProvider.ComputePlural(number);
+            var pluralType = pluralProvider.ComputePlural(number);
             try
             {
                 switch (pluralType)
                 {
                     case PluralTypeEnum.ZERO:
-                        selectedSentence = resource.GetString(key + "_Zero");
+                        selectedSentence = getString(key + "_Zero", cultureToUse);
                         break;
                     case PluralTypeEnum.ONE:
-                        selectedSentence = resource.GetString(key + "_One");
+                        selectedSentence = getString(key + "_One", cultureToUse);
                         break;
                     case PluralTypeEnum.OTHER:
-                        selectedSentence = resource.GetString(key + "_Other");
+                        selectedSentence = getString(key + "_Other", cultureToUse);
                         break;
                     case PluralTypeEnum.TWO:
-                        selectedSentence = resource.GetString(key + "_Two");
+                        selectedSentence = getString(key + "_Two", cultureToUse);
                         break;
                     case PluralTypeEnum.FEW:
-                        selectedSentence = resource.GetString(key + "_Few");
+                        selectedSentence = getString(key + "_Few", cultureToUse);
                         break;
                     case PluralTypeEnum.MANY:
-                        selectedSentence = resource.GetString(key + "_Many");
+                        selectedSentence = getString(key + "_Many", cultureToUse);
                         break;
                 }
             }
             catch { }
-            return selectedSentence ?? "";
+            return selectedSentence ?? string.Empty;
         }
 
     }
