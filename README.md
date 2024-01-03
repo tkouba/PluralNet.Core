@@ -1,20 +1,17 @@
-<img src="https://user-images.githubusercontent.com/1226538/56482774-c119ec00-647a-11e9-9d29-c010736c4981.png" height="80" />
+<img src="https://raw.githubusercontent.com/tkouba/PluralNet.Core/master/Icon.png" height="80" />
 
 # Important
 
-__PluralNet is now deprecated, all features from PluralNet are now part of a more advanced toolset created/managed by the same team, named ReswPlus: https://github.com/dotnetplus/reswplus__
+__Rewrited library PluralNet (https://github.com/rudyhuyn/PluralNet). Original library is now deprecated, 
+all features from PluralNet are now part of a more advanced toolset created/managed by the same team, 
+named ReswPlus: https://github.com/dotnetplus/reswplus, but there are dependencies on WinRT.__
 
-# PluralNet - Pluralization for Resx and Resw files
 
-__PluralNet__ adds support of pluralization and plural forms to your application. Very easy to use and compatible with RESW and RESX files.
 
-#How to use it?
+# PluralNet.Core - Pluralization for Resx files
 
-A Nuget package is available, you can install it from Visual Studio or using the following command line:
-
-```nuget
-Install-Package PluralNet
-```
+__PluralNet.Core__ adds support of pluralization and plural forms to your application. Very easy to use 
+and compatible with RESX files. There are no dependecies on any special
 
 #Support plural forms in your resource files
 
@@ -32,33 +29,7 @@ Polish (4 plural forms)
 * __TimestampMonth_Many__	{0} miesięcy temu
 * __TimestampMonth_Other__	{0} miesiąca temu
 
-## Silverlight only:
-
-In order to use the correct plural rules, the library needs to know the language used by the app and not by the system (for example a polish phone displaying an english application need to use the english rule instead of polish).
-To do that, you need to add an extra entry in your RESW file (if not already done by Visual Studio):
-
-
-* __ResourceLanguage__	fr-FR
-
 # Manage plural forms code-behind
-
-## If you use RESW:
-
-An extension is available to extend the ResourceLoader class, instead of
-
-```csharp
-ResourceLoader.GetForCurrentView().GetString("TimeStampDay");
-```
-
-you must use:
-
-```csharp
-ResourceLoader.GetForCurrentView().GetPlural("TimeStampDay", <NUMBER>);
-```
-
-And optionally use string.Format(...) if your string supports formatting.
-
-## If you use RESX:
 
 Instead of 
 
@@ -74,37 +45,74 @@ AppResources.ResourceManager.GetPlural("TimeStampDay", <NUMBER>);
 You can then use string.Format(...) if your string supports formatting.
 
 # XAML
-To use pluralization XAML-side, you can use the converter ``PluralConverter``:
 
-```xaml
-<TextBlock Text="{x:Bind NumberDays, Converter={StaticResource PluralConverter}, ConverterParameter=TimeStampDay}" />
-```
-
-If your localized string uses formatting, ``{0}`` will be automatically replaced by the number.
+Not supported yet.
 
 # Platforms
 
 The library supports:
-* UWP
-* Silverlight 5
-* Windows Phone Silverlight 8.0
-* Windows 8 and 8.1 WinRT apps
-* Windows Phone 8.1 WinPRT apps
-* ASP.Net Core
-* .Net Desktop apps (winform, wpf, etc...)
-* Xamarin Android and iOS
+* NetStandard 2.0
 
 # Language supported
 
-Afrikaans, Akan, Albanian, Amharic, Arabic, Armenian, Assamese, Asturian, Asu, Azerbaijani, Bambara, Basque, Belarusian, Bemba, Bena, Bengali, Bihari, Bodo, Bosnian, Breton, Bulgarian, Burmese, Catalan, Central Atlas Tamazight, Central Kurdish, Chechen, Cherokee, Chiga, Chinese, Colognian, Cornish, Croatian, Czech, Danish, Divehi, Dutch, Dzongkha, English, Esperanto, Estonian, European Portuguese, Ewe, Faroese, Filipino, Finnish, French, Friulian, Fulah, Galician, Ganda, Georgian, German, Greek, Gujarati, Gun, Hausa, Hawaiian, Hebrew, Hindi, Hungarian, Icelandic, Igbo, Inari Sami, Indonesian, Inuktitut, Irish, Italian, Japanese, Javanese, Jju, Kabuverdianu, Kabyle, Kako, Kalaallisut, Kannada, Kashmiri, Kazakh, Khmer, Korean, Koyraboro Senni, Kurdish, Kyrgyz, Lakota, Langi, Lao, Latvian, Lingala, Lithuanian, Lojban, Lower Sorbian, Lule Sami, Luxembourgish, Macedonian, Machame, Makonde, Malagasy, Malay, Malayalam, Maltese, Manx, Marathi, Masai, Metaʼ, Moldavian, Mongolian, Nahuatl, Nama, Nepali, Ngiemboon, Ngomba, North Ndebele, Northern Sami, Northern Sotho, Norwegian, Norwegian Bokmål, Norwegian Nynorsk, Nyanja, Nyankole, N’Ko, Oriya, Oromo, Ossetic, Papiamento, Pashto, Persian, Polish, Portuguese, Prussian, Punjabi, Romanian, Romansh, Rombo, Root, Russian, Rwa, Saho, Sakha, Samburu, Sami languages [Other], Sango, Scottish Gaelic, Sena, Serbian, Serbo-Croatian, Shambala, Shona, Sichuan Yi, Sinhala, Skolt Sami, Slovak, Slovenian, Soga, Somali, South Ndebele, Southern Kurdish, Southern Sami, Southern Sotho, Spanish, Swahili, Swati, Swedish, Swiss German, Syriac, Tachelhit, Tagalog, Tamil, Telugu, Teso, Thai, Tibetan, Tigre, Tigrinya, Tongan, Tsonga, Tswana, Turkish, Turkmen, Tyap, Ukrainian, Upper Sorbian, Urdu, Uyghur, Uzbek, Venda, Vietnamese, Volapük, Vunjo, Walloon, Walser, Welsh, Western Frisian, Wolof, Xhosa, Yiddish, Yoruba, Zulu
+Afrikaans, Akan, Albanian, Amharic, Arabic, Armenian, Assamese, Asturian, Asu, Azerbaijani, Bambara, Basque, 
+Belarusian, Bemba, Bena, Bengali, Bihari, Bodo, Bosnian, Breton, Bulgarian, Burmese, Catalan, Central Atlas Tamazight, 
+Central Kurdish, Chechen, Cherokee, Chiga, Chinese, Colognian, Cornish, Croatian, Czech, Danish, Divehi, Dutch, 
+Dzongkha, English, Esperanto, Estonian, European Portuguese, Ewe, Faroese, Filipino, Finnish, French, Friulian, 
+Fulah, Galician, Ganda, Georgian, German, Greek, Gujarati, Gun, Hausa, Hawaiian, Hebrew, Hindi, Hungarian, Icelandic, 
+Igbo, Inari Sami, Indonesian, Inuktitut, Irish, Italian, Japanese, Javanese, Jju, Kabuverdianu, Kabyle, Kako, 
+Kalaallisut, Kannada, Kashmiri, Kazakh, Khmer, Korean, Koyraboro Senni, Kurdish, Kyrgyz, Lakota, Langi, Lao, Latvian, 
+Lingala, Lithuanian, Lojban, Lower Sorbian, Lule Sami, Luxembourgish, Macedonian, Machame, Makonde, Malagasy, Malay, 
+Malayalam, Maltese, Manx, Marathi, Masai, Metaʼ, Moldavian, Mongolian, Nahuatl, Nama, Nepali, Ngiemboon, Ngomba, 
+North Ndebele, Northern Sami, Northern Sotho, Norwegian, Norwegian Bokmål, Norwegian Nynorsk, Nyanja, Nyankole, 
+N’Ko, Oriya, Oromo, Ossetic, Papiamento, Pashto, Persian, Polish, Portuguese, Prussian, Punjabi, Romanian, Romansh, 
+Rombo, Root, Russian, Rwa, Saho, Sakha, Samburu, Sami languages [Other], Sango, Scottish Gaelic, Sena, Serbian, 
+Serbo-Croatian, Shambala, Shona, Sichuan Yi, Sinhala, Skolt Sami, Slovak, Slovenian, Soga, Somali, South Ndebele, 
+Southern Kurdish, Southern Sami, Southern Sotho, Spanish, Swahili, Swati, Swedish, Swiss German, Syriac, Tachelhit, 
+Tagalog, Tamil, Telugu, Teso, Thai, Tibetan, Tigre, Tigrinya, Tongan, Tsonga, Tswana, Turkish, Turkmen, Tyap, Ukrainian, 
+Upper Sorbian, Urdu, Uyghur, Uzbek, Venda, Vietnamese, Volapük, Vunjo, Walloon, Walser, Welsh, Western Frisian, Wolof, 
+Xhosa, Yiddish, Yoruba, Zulu
 
+# FAQ
+
+## I already use [Humanizer](https://github.com/Humanizr/Humanizer) - what are the advantages of PluralNet?
+
+The purpose of these 2 libraries are very different.
+
+Humanizer is a library to do operations on strings, one of the operation is to pluralize a word : "man".Pluralize().
+
+To cut a long story short, Humanizer does:
+
+* verify if the word is "man" "woman" "child", etc... and use the correct plural
+* verify the ending of the word: potato => potatoES
+* verify if the word is uncountable
+* else add a S
+It only supports english, no sentences and is not related numbers.
+
+PluralNet is totally different, it's a tool for localizations (select the correct resource depends of the number), 
+if you want to display:
+
+* you have removed XX item(s), you can restore this file(s) using this link.
+
+You can create 2 resources:
+
+* you have removed 1 item, you can restore this file using this link.
+* you have removed {0} items, you can restore these files, using this link.
+
+PluralNet will select the correct string depends of the number and will support all languages.
+
+For example
+
+* 0 is singular in french
+* 9999.999991 is singular for some languages cause ending with a 1
+
+Polish has 4 different plural forms
+etc...
+
+You can see all [language plural rules](https://www.unicode.org/cldr/charts/44/supplemental/language_plural_rules.html).
 
 # How to help?
 
 If you detect an issue, want to add a language, don't hesitate to submit a pull request!
-
-# more info
-
-http://www.rudyhuyn.com/blog/?p=5341
 
  
