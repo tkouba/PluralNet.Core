@@ -4,15 +4,24 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>PluralNet</RootNamespace>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	<GenerateDocumentationFile>True</GenerateDocumentationFile>
     <Title>PluralNet Core</Title>
     <Authors>rudyhuyn, tkouba</Authors>
     <PackageTags>dotnet;localization;resx;plural;pluralization</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>Icon.png</PackageIcon>
+    <Description>Adds support of pluralization and plural forms to your application. Very easy to use and compatible with RESX files.</Description>
+    <PackageProjectUrl>https://github.com/tkouba/PluralNet.Core</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="..\Icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\LICENSE">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
