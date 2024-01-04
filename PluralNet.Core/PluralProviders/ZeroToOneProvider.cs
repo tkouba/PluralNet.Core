@@ -10,8 +10,16 @@ using PluralNet.Interfaces;
 
 namespace PluralNet.Providers
 {
+    /// <summary>
+    /// This class supports the PluralNet infrastructure and is not intended to be used directly from your code.
+    /// </summary>
     public class ZeroToOneProvider : IPluralProvider
     {
+        /// <summary>
+        /// This method supports the PluralNet infrastructure and is not intended to be used directly from your code.
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
         public PluralTypeEnum ComputePlural(decimal n)
         {
             if (n.IsBetween(0, 1))
