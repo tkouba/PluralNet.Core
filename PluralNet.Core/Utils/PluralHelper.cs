@@ -10,6 +10,9 @@ using PluralNet.Interfaces;
 
 namespace PluralNet.Utils
 {
+    /// <summary>
+    /// Static helper class for choose the right PluralProvider for the language
+    /// </summary>
     public static class PluralHelper
     {
         /// <summary>
