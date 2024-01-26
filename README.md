@@ -1,21 +1,23 @@
 <img src="https://raw.githubusercontent.com/tkouba/PluralNet.Core/master/Icon.png" height="80" />
 
-# Important
+# Foreword
 
-__Rewrited library PluralNet (https://github.com/rudyhuyn/PluralNet). Original library is now deprecated, 
+Rewrited library [PluralNet](https://github.com/rudyhuyn/PluralNet). Original library is now deprecated, 
 all features from PluralNet are now part of a more advanced toolset created/managed by the same team, 
-named ReswPlus: https://github.com/dotnetplus/reswplus, but there are dependencies on WinRT.__
-
+named [ReswPlus](https://github.com/dotnetplus/reswplus), but there are dependencies on WinRT. This library 
+rewritten has core functions for RESX files pluralize from code.
 
 
 # PluralNet.Core - Pluralization for Resx files
 
 __PluralNet.Core__ adds support of pluralization and plural forms to your application. Very easy to use 
-and compatible with RESX files. There are no dependecies on any special
+and compatible with RESX files. There are no dependecies on any special environment such as WinRT, WPF, 
+Xamarin, MAUI or other.
 
-#Support plural forms in your resource files
+## Support plural forms in your resource files
 
-Instead of one entry in your resource files, you must create one entry for each plural forms used by the language (One, Other, Few?, Many?, Zero?, Two?), used the ``_`` symbol to separate the resource name to the plural form id
+Instead of one entry in your resource files, you must create one entry for each plural forms used by the language 
+(One, Other, Few?, Many?, Zero?, Two?), used the ``_`` symbol to separate the resource name to the plural form id
 
 Example:
 
@@ -29,7 +31,16 @@ Polish (4 plural forms)
 * __TimestampMonth_Many__	{0} miesięcy temu
 * __TimestampMonth_Other__	{0} miesiąca temu
 
-# Manage plural forms code-behind
+Plural form suffix should follow the [Plural Rules](https://cldr.unicode.org/index/cldr-spec/plural-rules)
+
+* __zero__
+* __one__ - singular
+* __two__ - dual
+* __few__ - paucal
+* __many__ - also used for fractions if they have a separate class
+* __other__ - required—general plural form—also used if the language only has a single form
+
+## Manage plural forms code-behind
 
 Instead of 
 
@@ -44,16 +55,16 @@ AppResources.ResourceManager.GetPlural("TimeStampDay", <NUMBER>);
 
 You can then use string.Format(...) if your string supports formatting.
 
-# XAML
+## XAML
 
-Not supported yet.
+Not supported yet. Probably will be in separated assemblies.
 
-# Platforms
+## Platforms
 
 The library supports:
 * NetStandard 2.0
 
-# Language supported
+## Language supported
 
 Afrikaans, Akan, Albanian, Amharic, Arabic, Armenian, Assamese, Asturian, Asu, Azerbaijani, Bambara, Basque, 
 Belarusian, Bemba, Bena, Bengali, Bihari, Bodo, Bosnian, Breton, Bulgarian, Burmese, Catalan, Central Atlas Tamazight, 
@@ -72,6 +83,12 @@ Southern Kurdish, Southern Sami, Southern Sotho, Spanish, Swahili, Swati, Swedis
 Tagalog, Tamil, Telugu, Teso, Thai, Tibetan, Tigre, Tigrinya, Tongan, Tsonga, Tswana, Turkish, Turkmen, Tyap, Ukrainian, 
 Upper Sorbian, Urdu, Uyghur, Uzbek, Venda, Vietnamese, Volapük, Vunjo, Walloon, Walser, Welsh, Western Frisian, Wolof, 
 Xhosa, Yiddish, Yoruba, Zulu
+
+## Future plans
+
+ - [ ] Add some examples
+ - [ ] Add support for XAML
+ - [ ] Determine how to add support for `IStringLocalizer` interface
 
 # FAQ
 
@@ -113,6 +130,7 @@ You can see all [language plural rules](https://www.unicode.org/cldr/charts/44/s
 
 # How to help?
 
-If you detect an issue, want to add a language, don't hesitate to submit a pull request!
+If you detect an issue, want to add a language or some language provider tests, 
+don't hesitate to submit a pull request!
 
  
